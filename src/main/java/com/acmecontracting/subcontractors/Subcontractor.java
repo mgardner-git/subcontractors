@@ -1,7 +1,10 @@
-package model;
+package com.acmecontracting.subcontractors;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import model.Assignment;
+
 import java.util.List;
 
 
@@ -10,7 +13,11 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Subcontractor.findAll", query="SELECT s FROM Subcontractor s")
+@NamedQueries(
+		{@NamedQuery(name="Subcontractor.findAll", query="SELECT S FROM Subcontractor S"),
+		@NamedQuery(name="Subcontractor.login", query="SELECT S FROM Subcontractor S WHERE S.emailAddress=:emailAddress AND S.password=:password"),
+		
+		})
 public class Subcontractor implements Serializable {
 	private static final long serialVersionUID = 1L;
 

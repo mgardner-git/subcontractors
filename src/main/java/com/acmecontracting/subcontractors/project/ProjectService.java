@@ -1,8 +1,13 @@
 package com.acmecontracting.subcontractors.project;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +31,14 @@ public class ProjectService {
 		return project;
 	}
 	
+	public List<Project> readProjects(Integer id){
+		EntityManager em = emf.createEntityManager();
+		TypedQuery<Project> query = em.createNamedQuery("Project.myProjects", Project.class);
+		query.setParameter("id", id);
+		List<Project> myProjects = query.getResultList();
+		
+		return myProjects;
+	}
 	
 	public Project update(Project project) {
 		EntityManager em = emf.createEntityManager();

@@ -5,7 +5,7 @@
 		<class>com.acmecontracting.subcontractors.project.Project</class>
 		<class>model.Report</class>
 		<class>model.Shift</class>
-		<class>model.Subcontractor</class>
+		<class>com.acmecontracting.subcontractors.Subcontractor</class>
 		<class>model.Assignment</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/subcontractors"/>

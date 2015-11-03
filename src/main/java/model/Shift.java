@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.project.Project;
 
 import java.util.Date;

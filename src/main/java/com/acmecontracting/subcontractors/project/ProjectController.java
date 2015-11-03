@@ -1,5 +1,10 @@
 package com.acmecontracting.subcontractors.project;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.acmecontracting.subcontractors.Subcontractor;
+import com.acmecontracting.subcontractors.web.SessionConstants;
 
 /**
  * Handles requests for the application home page.
@@ -29,6 +39,17 @@ public class ProjectController {
 		return result;
 	}
 	
+	@RequestMapping(value="myProjects", method=RequestMethod.GET)
+	public @ResponseBody List<Project> getMyProjects(){
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpServletRequest request = attr.getRequest();
+		HttpSession session =  request.getSession(true); // true == allow create
+		Subcontractor loggedInUser = (Subcontractor)session.getAttribute(SessionConstants.USER);
+		logger.info("Reading my projects for " + loggedInUser.getEmailAddress());
+		List<Project> results = service.readProjects(loggedInUser.getId());
+		return results;
+		
+	}
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
 	public @ResponseBody Project read(@PathVariable Integer id) {
 		logger.info("Reading project " + id);

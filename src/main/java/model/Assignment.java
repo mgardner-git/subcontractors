@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.acmecontracting.subcontractors.Subcontractor;
+
 
 /**
  * The persistent class for the assignment database table.
