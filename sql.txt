@@ -1,0 +1,53 @@
+DROP TABLE IF EXISTS image;
+DROP TABLE IF EXISTS shift;
+DROP TABLE IF EXISTS report;
+DROP TABLE IF EXISTS subcontractor;
+DROP TABLE IF EXISTS project;
+
+
+
+
+
+CREATE TABLE project(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  description TEXT
+
+);
+INSERT INTO project (id,name,description) VALUES (1,"Leaf Pickup on 2nd north","The Johnson family agreed to pay us to haul away a bunch of leafs");
+ 
+
+CREATE TABLE subcontractor(
+   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+   name VARCHAR(50) NOT NULL
+);
+INSERT INTO subcontractor(id,name) VALUES (1,"Bob's lawn care");
+
+
+CREATE TABLE report(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  project_fk INT(11) NOT NULL,
+  subcontractor_fk INT(11) NOT NULL,
+  description TEXT,
+  FOREIGN KEY (project_fk) REFERENCES project(id),
+  FOREIGN KEY (subcontractor_fk) REFERENCES subcontractor(id)
+);
+
+CREATE TABLE shift(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  project_fk INT(11) NOT NULL,
+  subcontractor_fk INT(11) NOT NULL,
+  begin DATETIME NOT NULL,
+  end DATETIME NOT NULL,
+  description TEXT,
+  FOREIGN KEY (project_fk) REFERENCES project(id),
+  FOREIGN KEY (subcontractor_fk) REFERENCES subcontractor(id)
+);
+
+CREATE TABLE image(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  description TEXT,
+  report_fk INT(11) NOT NULL,
+  FOREIGN KEY (report_fk) REFERENCES report(id)
+);
+
