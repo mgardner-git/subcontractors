@@ -17,15 +17,15 @@ public class Subcontractor implements Serializable {
 	@Id
 	private int id;
 
+	private String emailAddress;
+
 	private String name;
 
-	//bi-directional many-to-one association to Report
-	@OneToMany(mappedBy="subcontractor")
-	private List<Report> reports;
+	private String password;
 
-	//bi-directional many-to-one association to Shift
+	//bi-directional many-to-one association to Assignment
 	@OneToMany(mappedBy="subcontractor")
-	private List<Shift> shifts;
+	private List<Assignment> assignments;
 
 	public Subcontractor() {
 	}
@@ -38,6 +38,14 @@ public class Subcontractor implements Serializable {
 		this.id = id;
 	}
 
+	public String getEmailAddress() {
+		return this.emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -46,48 +54,34 @@ public class Subcontractor implements Serializable {
 		this.name = name;
 	}
 
-	public List<Report> getReports() {
-		return this.reports;
+	public String getPassword() {
+		return this.password;
 	}
 
-	public void setReports(List<Report> reports) {
-		this.reports = reports;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public Report addReport(Report report) {
-		getReports().add(report);
-		report.setSubcontractor(this);
-
-		return report;
+	public List<Assignment> getAssignments() {
+		return this.assignments;
 	}
 
-	public Report removeReport(Report report) {
-		getReports().remove(report);
-		report.setSubcontractor(null);
-
-		return report;
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
 
-	public List<Shift> getShifts() {
-		return this.shifts;
+	public Assignment addAssignment(Assignment assignment) {
+		getAssignments().add(assignment);
+		assignment.setSubcontractor(this);
+
+		return assignment;
 	}
 
-	public void setShifts(List<Shift> shifts) {
-		this.shifts = shifts;
-	}
+	public Assignment removeAssignment(Assignment assignment) {
+		getAssignments().remove(assignment);
+		assignment.setSubcontractor(null);
 
-	public Shift addShift(Shift shift) {
-		getShifts().add(shift);
-		shift.setSubcontractor(this);
-
-		return shift;
-	}
-
-	public Shift removeShift(Shift shift) {
-		getShifts().remove(shift);
-		shift.setSubcontractor(null);
-
-		return shift;
+		return assignment;
 	}
 
 }

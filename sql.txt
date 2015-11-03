@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS image;
 DROP TABLE IF EXISTS shift;
 DROP TABLE IF EXISTS report;
+DROP TABLE IF EXISTS assignment;
 DROP TABLE IF EXISTS subcontractor;
 DROP TABLE IF EXISTS project;
 
@@ -19,10 +20,21 @@ INSERT INTO project (id,name,description) VALUES (1,"Leaf Pickup on 2nd north","
 
 CREATE TABLE subcontractor(
    id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-   name VARCHAR(50) NOT NULL
+   name VARCHAR(50) NOT NULL,
+   emailAddress VARCHAR(100) NOT NULL,
+   password VARCHAR(100) NOT NULL
 );
-INSERT INTO subcontractor(id,name) VALUES (1,"Bob's lawn care");
+INSERT INTO subcontractor(id,name, emailAddress, password) VALUES (1,"Bob's lawn care", "bob@bob.org","bob123");
 
+#Assignment of subcontractors to projects
+CREATE TABLE assignment(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  project_fk INT(11) NOT NULL,
+  subcontractor_fk INT(11) NOT NULL,
+  FOREIGN KEY (project_fk) REFERENCES project(id),
+  FOREIGN KEY (subcontractor_fk) REFERENCES subcontractor(id)
+ );
+ INSERT INTO assignment(id, subcontractor_fk, project_fk) VALUES(1, 1,1);
 
 CREATE TABLE report(
   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
