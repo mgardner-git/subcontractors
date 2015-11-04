@@ -1,8 +1,13 @@
-package com.acmecontracting.subcontractors.project;
+package com.acmecontracting.subcontractors;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+
+import com.acmecontracting.subcontractors.project.Project;
+import com.acmecontracting.subcontractors.project.ProjectService;
 
 import junit.framework.TestCase;
 

@@ -3,9 +3,8 @@ package com.acmecontracting.subcontractors.project;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.acmecontracting.subcontractors.shift.Shift;
-
 import model.Report;
+import model.Shift;
 
 import java.util.List;
 
