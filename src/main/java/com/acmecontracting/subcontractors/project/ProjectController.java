@@ -19,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.web.SessionConstants;
+import com.acmecontracting.subcontractors.web.Util;
 
 /**
  * Handles requests for the application home page.
@@ -41,10 +42,7 @@ public class ProjectController {
 	
 	@RequestMapping(value="myProjects", method=RequestMethod.GET)
 	public @ResponseBody List<Project> getMyProjects(){
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		HttpServletRequest request = attr.getRequest();
-		HttpSession session =  request.getSession(true); // true == allow create
-		Subcontractor loggedInUser = (Subcontractor)session.getAttribute(SessionConstants.USER);
+		Subcontractor loggedInUser = Util.getLoggedInUser();
 		logger.info("Reading my projects for " + loggedInUser.getEmailAddress());
 		List<Project> results = service.readProjects(loggedInUser.getId());
 		return results;

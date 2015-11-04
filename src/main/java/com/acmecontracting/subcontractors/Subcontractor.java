@@ -21,6 +21,8 @@ public class Subcontractor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator( name = "SUBCONTRACTOR_SEQUENCER", sequenceName = "MY_SEQ", allocationSize = 1, initialValue = 1 )
+	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="SUBCONTRACTOR_SEQUENCER")
 	private int id;
 
 	private String emailAddress;

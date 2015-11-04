@@ -8,9 +8,10 @@
 		<class>model.Image</class>
 		<class>com.acmecontracting.subcontractors.project.Project</class>
 		<class>model.Report</class>
-		<class>model.Shift</class>
-		<class>com.acmecontracting.subcontractors.Subcontractor</class>
+		<class>com.acmecontracting.subcontractors.shift.Shift</class>
 		<class>model.Assignment</class>
+		<class>com.acmecontracting.subcontractors.Subcontractor</class>
+		<class>com.acmecontracting.subcontractors.converters.LongToDateConverter</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/subcontractors"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>

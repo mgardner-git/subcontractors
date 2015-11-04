@@ -1,12 +1,22 @@
-package model;
+package com.acmecontracting.subcontractors.shift;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 
 import com.acmecontracting.subcontractors.Subcontractor;
+import com.acmecontracting.subcontractors.converters.LongToDateConverter;
 import com.acmecontracting.subcontractors.project.Project;
-
-import java.util.Date;
 
 
 /**
@@ -14,21 +24,28 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Shift.findAll", query="SELECT s FROM Shift s")
+@NamedQueries({
+	@NamedQuery(name="Shift.findAll", query="SELECT s FROM Shift s"),
+	@NamedQuery(name="Shift.findByProjectAndSubcontractor", query="SELECT S FROM Shift S WHERE S.project=:project AND S.subcontractor=:subcontractor"),
+	@NamedQuery(name="Shift.findByProjectAndSubcontractorAndRange", query="SELECT S FROM Shift S WHERE S.project=:project AND S.subcontractor=:subcontractor AND S.begin>:begin AND S.begin<:end")
+})
 public class Shift implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator( name = "SHIFT_SEQUENCER", sequenceName = "MY_SEQ", allocationSize = 1, initialValue = 1 )
+	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="SHIFT_SEQUENCER")
 	private int id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date begin;
 
 	@Lob
 	private String description;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date end;
+    @Convert(converter=LongToDateConverter.class)
+	private Long begin;
+	
+	@Convert(converter=LongToDateConverter.class)
+	private Long end;
 
 	//bi-directional many-to-one association to Project
 	@ManyToOne
@@ -51,11 +68,11 @@ public class Shift implements Serializable {
 		this.id = id;
 	}
 
-	public Date getBegin() {
+	public Long getBegin() {
 		return this.begin;
 	}
 
-	public void setBegin(Date begin) {
+	public void setBegin(Long begin) {
 		this.begin = begin;
 	}
 
@@ -67,11 +84,11 @@ public class Shift implements Serializable {
 		this.description = description;
 	}
 
-	public Date getEnd() {
+	public Long getEnd() {
 		return this.end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(Long end) {
 		this.end = end;
 	}
 
