@@ -13,11 +13,10 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQueries(
-		{@NamedQuery(name="Subcontractor.findAll", query="SELECT S FROM Subcontractor S"),
-		@NamedQuery(name="Subcontractor.login", query="SELECT S FROM Subcontractor S WHERE S.emailAddress=:emailAddress AND S.password=:password"),
-		
-		})
+@NamedQueries({
+	@NamedQuery(name="Subcontractor.findAll", query="SELECT S FROM Subcontractor S"),
+	@NamedQuery(name="Subcontractor.login", query="SELECT S FROM Subcontractor S WHERE S.emailAddress=:emailAddress AND S.password=:password")		
+})
 public class Subcontractor implements Serializable {
 	private static final long serialVersionUID = 1L;
 

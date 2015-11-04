@@ -13,7 +13,26 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	<repositories>
+		<repository>
+	    	<id>eclipselink</id>
+	    	<url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo/</url>
+	  	</repository>
+	</repositories>
 	<dependencies>
+		<!-- Eclipse Link -->	
+		<dependency>
+		  <groupId>org.eclipse.persistence</groupId>
+		  <artifactId>eclipselink</artifactId>
+		  <version>2.0.0</version>
+		  <scope>provided</scope><!-- since I'm running inside a Java EE container -->
+		</dependency>
+		<dependency>
+		  <groupId>org.eclipse.persistence</groupId>
+		  <artifactId>javax.persistence</artifactId>
+		  <version>2.0.0</version>
+		  <scope>provided</scope><!-- since I'm running inside a Java EE container -->
+		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -136,7 +155,11 @@
   			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.5</version>
 		</dependency>
-
+		<dependency>
+  			<groupId>javax.persistence</groupId>
+ 			<artifactId>persistence-api</artifactId>  
+  			<version>1.0</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
