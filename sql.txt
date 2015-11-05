@@ -51,6 +51,7 @@ CREATE TABLE shift(
   FOREIGN KEY (project_fk) REFERENCES project(id),
   FOREIGN KEY (subcontractor_fk) REFERENCES subcontractor(id)
 );
+INSERT INTO shift(id,project_fk,subcontractor_fk, begin,end) VALUES (1,1,1,now(),now());
 
 CREATE TABLE image(
   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,

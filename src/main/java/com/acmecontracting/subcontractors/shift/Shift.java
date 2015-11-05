@@ -1,12 +1,18 @@
 package com.acmecontracting.subcontractors.shift;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import com.acmecontracting.subcontractors.Subcontractor;
-import com.acmecontracting.subcontractors.project.Project;
-
-import java.util.Date;
+import com.acmecontracting.subcontractors.converters.LongToDateConverter;
 
 
 /**
@@ -21,24 +27,21 @@ public class Shift implements Serializable {
 	@Id
 	private int id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date begin;
-
 	@Lob
 	private String description;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date end;
+	@Convert(converter=LongToDateConverter.class)
+	private Long begin;	
+	@Convert(converter=LongToDateConverter.class)
+	private Long end;
 
-	//bi-directional many-to-one association to Project
-	@ManyToOne
-	@JoinColumn(name="project_fk")
-	private Project project;
+	@Column(name="project_fk")
+	private Integer projectId;
+	
+	@Column(name="subcontractor_fk")
+	private Integer subcontractorId;
+	
 
-	//bi-directional many-to-one association to Subcontractor
-	@ManyToOne
-	@JoinColumn(name="subcontractor_fk")
-	private Subcontractor subcontractor;
 
 	public Shift() {
 	}
@@ -51,13 +54,7 @@ public class Shift implements Serializable {
 		this.id = id;
 	}
 
-	public Date getBegin() {
-		return this.begin;
-	}
 
-	public void setBegin(Date begin) {
-		this.begin = begin;
-	}
 
 	public String getDescription() {
 		return this.description;
@@ -67,28 +64,36 @@ public class Shift implements Serializable {
 		this.description = description;
 	}
 
-	public Date getEnd() {
+	public Long getBegin() {
+		return this.begin;
+	}
+
+	public void setBegin(Long begin) {
+		this.begin = begin;
+	}
+	
+	public Long getEnd() {
 		return this.end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(Long end) {
 		this.end = end;
 	}
-
-	public Project getProject() {
-		return this.project;
+	
+	public Integer getProjectId() {
+		return projectId;
 	}
 
-	public void setProject(Project project) {
-		this.project = project;
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
 	}
 
-	public Subcontractor getSubcontractor() {
-		return this.subcontractor;
+	public Integer getSubcontractorId() {
+		return subcontractorId;
 	}
 
-	public void setSubcontractor(Subcontractor subcontractor) {
-		this.subcontractor = subcontractor;
+	public void setSubcontractorId(Integer subcontractorId) {
+		this.subcontractorId = subcontractorId;
 	}
 
 }

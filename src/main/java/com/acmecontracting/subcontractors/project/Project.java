@@ -37,7 +37,8 @@ public class Project implements Serializable {
 	private List<Report> reports;
 
 	//bi-directional many-to-one association to Shift
-	@OneToMany(mappedBy="project")
+	@OneToMany(orphanRemoval=true)
+	@JoinColumn(name="project_fk")
 	private List<Shift> shifts;
 
 	public Project() {
@@ -99,16 +100,10 @@ public class Project implements Serializable {
 
 	public Shift addShift(Shift shift) {
 		getShifts().add(shift);
-		shift.setProject(this);
+		shift.setProjectId(id);
 
 		return shift;
 	}
 
-	public Shift removeShift(Shift shift) {
-		getShifts().remove(shift);
-		shift.setProject(null);
-
-		return shift;
-	}
 
 }

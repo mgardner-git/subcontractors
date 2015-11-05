@@ -1,4 +1,4 @@
-package com.acmecontracting.subcontractors;
+package com.acmecontracting.subcontractors.project;
 
 import org.junit.After;
 import org.junit.Before;
