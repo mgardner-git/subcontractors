@@ -22,7 +22,7 @@
 					<td>{{project.name}}</td>
 					<td>{{project.description}}</td>
 					<td class="icons">
-						<a ng-href="addShift.jsp" tooltip = "Log a shift on this project" class="ui-icon-large ui-icon-shift"></a>
+						<a ng-href="addShift.jsp?projectId={{project.id}}" tooltip = "Log a shift on this project" class="ui-icon-large ui-icon-shift"></a>
 						
 					</td>
 				</tr>

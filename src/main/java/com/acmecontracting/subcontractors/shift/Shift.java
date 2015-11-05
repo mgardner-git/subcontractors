@@ -5,11 +5,14 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 
 import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.converters.LongToDateConverter;
@@ -25,6 +28,8 @@ public class Shift implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator( name = "SHIFT_SEQUENCER", sequenceName = "MY_SEQ", allocationSize = 1, initialValue = 1 )
+	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="SHIFT_SEQUENCER")
 	private int id;
 
 	@Lob

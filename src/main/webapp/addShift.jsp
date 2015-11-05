@@ -3,10 +3,12 @@
 <script type="text/javascript">
 	
 	app.controller('addShiftController', function($scope, $http,$timeout) {
+		var params=parseLocation();
 		$scope.shift={
 				begin: new Date().getTime(),
 				end: new Date().getTime(),
-				description: ""
+				description: "",
+				projectId: params.projectId
 		}
 		
 		$scope.addShift = function(){
@@ -17,6 +19,7 @@
 			        data: submitText,
 			    }).success(function(data, status, headers, config) {
 			        alert("Saved");
+			        window.location.href="myProjects.jsp";
 			    });				
 		}
 
