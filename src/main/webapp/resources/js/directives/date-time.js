@@ -1,9 +1,9 @@
 app.directive("dateTime",function(){
 	return{ 
 		restrict: "E",
-		template:'<input type="text" ng-model="model" class="{{cssClass}}" tabIndex="{{tabIndex}}" placeholder="{{placeholder}}" ng-blur="blur()"></input>',
+		template:'<input type="text" class="{{cssClass}}" tabIndex="{{tabIndex}}" placeholder="{{placeholder}}" ng-blur="blur()"></input>',
 		scope:{
-			model: "=",
+			dateVal: "=",
 			cssClass: "@",
 			tabIndex: "@",
 			blur: "&",
@@ -13,10 +13,18 @@ app.directive("dateTime",function(){
 		link: function($scope, element, attrs){
 			var inputNode = jQuery(element).find("input");
 			inputNode.datetimepicker({
+				dateFormat: 'dd-mm-yy',
 				timeFormat: "hh:mm tt",
-				showSecond: false,
+				showSecond: null,
 				showMicrosecond: false,
-				showTimezone: false
+				showTimezone: false,
+			    onSelect: function(date,item){
+			    	if(date !== item.lastVal){
+			    		jQuery(this).change();
+			    		var date = jQuery(inputNode).datepicker("getDate");
+			    		$scope.dateVal=date.getTime();
+			    	}
+			    }
 			});
 		} ,
 		controller: function($scope){

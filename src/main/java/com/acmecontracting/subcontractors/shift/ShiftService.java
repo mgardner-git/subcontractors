@@ -11,6 +11,8 @@ import javax.persistence.Query;
 import org.junit.Before;
 import org.springframework.stereotype.Service;
 
+import com.acmecontracting.subcontractors.project.Project;
+
 @Service
 public class ShiftService {
 	//TODO: Validation??
@@ -18,15 +20,20 @@ public class ShiftService {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("subcontractors");
 	Date now;
 	
-	@Before
-	public void before() {
-		now = new Date();
-	}
-
 	public Shift read(Integer id) {	
 		EntityManager em = emf.createEntityManager();		
 		Shift shift = em.find(Shift.class, id);		
 		return shift;
 	}
+	
+	public Shift create(Shift shift) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(shift);
+		em.flush();
+		em.getTransaction().commit();		
+		return shift;
+	}
+
 	
 }

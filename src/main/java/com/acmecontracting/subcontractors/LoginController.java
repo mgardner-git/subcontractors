@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.acmecontracting.subcontractors.web.SessionConstants;
+import com.acmecontracting.subcontractors.util.SessionStuff;
 
 @Controller
 public class LoginController {
@@ -28,10 +28,10 @@ public class LoginController {
 		HttpSession session =  request.getSession(true); // true == allow create
 		
 		if (result == null){
-			request.setAttribute(SessionConstants.LOGIN_ERROR, "User not found");
+			request.setAttribute(SessionStuff.LOGIN_ERROR, "User not found");
 			return "forward:/login.jsp";
 		}else{
-			session.setAttribute(SessionConstants.USER, result);
+			session.setAttribute(SessionStuff.USER, result);
 			return "forward:/myProjects.jsp";
 		}
 	}
@@ -41,7 +41,7 @@ public class LoginController {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = attr.getRequest();
 		HttpSession session =  request.getSession(true); // true == allow create
-		session.setAttribute(SessionConstants.USER, null);
+		session.setAttribute(SessionStuff.USER, null);
 		return "forward:/login.jsp";
 	}
 	
