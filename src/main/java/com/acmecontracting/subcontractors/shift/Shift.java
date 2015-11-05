@@ -1,4 +1,4 @@
-package model;
+package com.acmecontracting.subcontractors.shift;
 
 import java.io.Serializable;
 import javax.persistence.*;
