@@ -8,13 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
-import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.converters.LongToDateConverter;
 
 
@@ -23,7 +21,10 @@ import com.acmecontracting.subcontractors.converters.LongToDateConverter;
  * 
  */
 @Entity
-@NamedQuery(name="Shift.findAll", query="SELECT s FROM Shift s")
+@NamedQueries({
+	@NamedQuery(name="Shift.findAll", query="SELECT s FROM Shift s"),
+	@NamedQuery(name="Shift.readByShiftAndSubcontractor", query="SELECT S FROM Shift S WHERE S.subcontractorId=:subcontractorId AND S.projectId=:projectId")
+})
 public class Shift implements Serializable {
 	private static final long serialVersionUID = 1L;
 

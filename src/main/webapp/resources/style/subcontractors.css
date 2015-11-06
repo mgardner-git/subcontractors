@@ -87,16 +87,18 @@ header
 	background-image: URL(../img/search-icon.gif);	
 }
 .ui-icon-large{
-	width: 40px;
-	height: 75px;
+	width: 50px;
+	height: 50px;
 	display:inline-block;
 	cursor: pointer;
 }
 
 
 .ui-icon-shift{
-	background-image: URL(../img/time_clock.gif);
- 
+	background-image: URL(../img/clock-icon.gif); 
+}
+.ui-icon-report{
+	background-image: URL(../img/report-icon.gif);
 }
 .selected{
 	background-color: yellow;

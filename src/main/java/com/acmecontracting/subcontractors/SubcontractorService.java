@@ -9,6 +9,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 
+import com.acmecontracting.subcontractors.project.Project;
+
 @Service
 public class SubcontractorService {
 	//TODO: Validation??
@@ -31,6 +33,30 @@ public class SubcontractorService {
 		}else{
 			return null;
 		}
+	}
+	
+	public Subcontractor create(Subcontractor subcontractor) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(subcontractor);
+		em.flush();
+		em.getTransaction().commit();		
+		return subcontractor;
+	}
+
+	
+	public boolean delete(Integer id) {
+		EntityManager em = emf.createEntityManager();
+		Subcontractor subcontractor = em.find(Subcontractor.class, id);
+		if (subcontractor == null) {
+			throw new IllegalArgumentException("Can't find shift with id " + id);			
+		}else {
+			em.getTransaction().begin();
+			em.remove(subcontractor);
+			em.flush();
+			em.getTransaction().commit();
+		}
+		return true;
 	}
 	
 }

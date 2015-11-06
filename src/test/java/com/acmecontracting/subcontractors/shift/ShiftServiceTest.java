@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -66,12 +67,22 @@ public class ShiftServiceTest{
 		shift.setDescription("Test1");
 		shift.setBegin(now.getTime()-1000);
 		shift.setEnd(now.getTime());	
-		shift.setProject(project);
-		shift.setSubcontractor(subcontractor);
+		shift.setProjectId(project.getId());
+		shift.setSubcontractorId(subcontractor.getId());
 		Shift result = shiftService.create(shift);
 		assertNotNull(result);
 		assertNotNull(result.getId());
 		deleteMeId = result.getId();
+	}
+	
+	@Test
+	//this test is designed to be run directly after the sql.txt file 
+	public void testReadBySubcontractorAndProject() {
+		List<Shift> results = shiftService.readByProjectAndSubcontractor(1, 1);
+		assertNotNull(results);
+		assertEquals(1,results.size());
+		Shift result = results.get(0);
+		assertEquals("raked leaves", result.getDescription());		
 	}
 	
 	@Test
@@ -80,8 +91,8 @@ public class ShiftServiceTest{
 		shift.setDescription("Test1");
 		shift.setBegin(now.getTime()-1000);
 		shift.setEnd(now.getTime());	
-		shift.setProject(project);
-		shift.setSubcontractor(subcontractor);
+		shift.setProjectId(project.getId());
+		shift.setSubcontractorId(subcontractor.getId());
 		Shift result = shiftService.create(shift);
 		deleteMeId = result.getId();
 
@@ -96,8 +107,8 @@ public class ShiftServiceTest{
 		shift.setDescription("Test1");
 		shift.setBegin(now.getTime()-1000);
 		shift.setEnd(now.getTime());	
-		shift.setProject(project);
-		shift.setSubcontractor(subcontractor);
+		shift.setProjectId(project.getId());
+		shift.setSubcontractorId(subcontractor.getId());
 
 		Shift result = shiftService.create(shift);
 		assertNotNull(result.getId());
@@ -116,8 +127,8 @@ public class ShiftServiceTest{
 		shift.setDescription("Test1");
 		shift.setBegin(now.getTime()-1000);
 		shift.setEnd(now.getTime());	
-		shift.setProject(project);
-		shift.setSubcontractor(subcontractor);
+		shift.setProjectId(project.getId());
+		shift.setSubcontractorId(subcontractor.getId());
 
 		Shift shift2 = shiftService.create(shift);
 		
