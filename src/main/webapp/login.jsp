@@ -1,4 +1,4 @@
-<%@page import="com.acmecontracting.subcontractors.web.SessionConstants"%>
+<%@page import="com.acmecontracting.subcontractors.util.SessionStuff"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,9 +22,9 @@
  <input type="submit"/>
 </form>
 
-<% if (request.getAttribute(SessionConstants.LOGIN_ERROR) != null){ %>
+<% if (request.getAttribute(SessionStuff.LOGIN_ERROR) != null){ %>
 <div class="error">
-	<%= request.getAttribute(SessionConstants.LOGIN_ERROR) %>
+	<%= request.getAttribute(SessionStuff.LOGIN_ERROR) %>
 </div>
 <%}%>
 

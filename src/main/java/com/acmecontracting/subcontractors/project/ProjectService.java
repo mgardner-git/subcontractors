@@ -6,8 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
+
+import com.acmecontracting.subcontractors.Subcontractor;
+
+import model.Assignment;
 
 @Service
 public class ProjectService {
@@ -37,6 +42,21 @@ public class ProjectService {
 		List<Project> myProjects = query.getResultList();
 		
 		return myProjects;
+	}
+	
+	public ProjectAnalysisDTO analyze() {
+		EntityManager em = emf.createEntityManager();
+		ProjectAnalysisDTO analysis = new ProjectAnalysisDTO();
+		TypedQuery<Project> projectQuery = em.createNamedQuery("Project.findAll", Project.class);		
+		analysis.setProjects(projectQuery.getResultList());
+		
+		TypedQuery<Assignment> assignmentQuery = em.createNamedQuery("Assignment.findAll", Assignment.class);
+		analysis.setAssignments(assignmentQuery.getResultList());
+		
+		TypedQuery<Subcontractor> subcontractorQuery = em.createNamedQuery("Subcontractor.findAll", Subcontractor.class);
+		analysis.setSubcontractors(subcontractorQuery.getResultList());
+		
+		return analysis;
 	}
 	
 	public Project update(Project project) {

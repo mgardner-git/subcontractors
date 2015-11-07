@@ -56,6 +56,11 @@ public class ProjectController {
 		Project result = service.read(id);
 		return result;
 	}
+	
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public @ResponseBody ProjectAnalysisDTO analyze() {
+		return service.analyze();
+	}
 
 	@RequestMapping(value="{id}", method=RequestMethod.PUT)
 	public @ResponseBody Project update(@RequestBody Project project) {

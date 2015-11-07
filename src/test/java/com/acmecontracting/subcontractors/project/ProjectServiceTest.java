@@ -3,11 +3,6 @@ package com.acmecontracting.subcontractors.project;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-
-import com.acmecontracting.subcontractors.project.Project;
-import com.acmecontracting.subcontractors.project.ProjectService;
 
 import junit.framework.TestCase;
 
@@ -82,5 +77,18 @@ public class ProjectServiceTest extends TestCase{
 		
 		Project result2 = projectService.read(project2.getId());
 		assertNull(result2);
+	}
+	
+	@Test
+	//this method is meant to be run just after the sql.txt script.
+	public void testAnalyze() {
+		ProjectAnalysisDTO analysis = projectService.analyze();
+		assertNotNull(analysis);
+		assertNotNull(analysis.getAssignments());
+		assertEquals(1, analysis.getAssignments().size());
+		assertNotNull(analysis.getProjects());
+		assertEquals(1, analysis.getProjects().size());
+		assertNotNull(analysis.getSubcontractors());
+		assertEquals(1, analysis.getSubcontractors().size());
 	}
 }
