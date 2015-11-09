@@ -31,8 +31,9 @@ public class Subcontractor implements Serializable {
 
 	private String password;
 
-	//bi-directional many-to-one association to Assignment
-	@OneToMany(mappedBy="subcontractor")
+	
+	@OneToMany
+	@JoinColumn(name="subcontractor_Fk")
 	private List<Assignment> assignments;
 
 	public Subcontractor() {
@@ -80,14 +81,14 @@ public class Subcontractor implements Serializable {
 
 	public Assignment addAssignment(Assignment assignment) {
 		getAssignments().add(assignment);
-		assignment.setSubcontractor(this);
+		assignment.setSubcontractorFk(id);
 
 		return assignment;
 	}
 
 	public Assignment removeAssignment(Assignment assignment) {
 		getAssignments().remove(assignment);
-		assignment.setSubcontractor(null);
+		assignment.setSubcontractorFk(id);
 
 		return assignment;
 	}

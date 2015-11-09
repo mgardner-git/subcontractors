@@ -11,8 +11,9 @@ CREATE TABLE project(
   description TEXT
 
 );
-INSERT INTO project (id,name,description) VALUES (1,"Leaf Pickup on 2nd north","The Johnson family agreed to pay us to haul away a bunch of leafs");
- 
+INSERT INTO project (id,name,description) VALUES (1,"Project A","AAAAAAAAAAAAA");
+INSERT INTO project (id,name,description) VALUES (2,"Project B","BBBBBBBBBBBBB");
+INSERT INTO project (id,name,description) VALUES (3,"Project C","CCCCCCCCCCCCC");
 
 CREATE TABLE subcontractor(
    id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -20,8 +21,9 @@ CREATE TABLE subcontractor(
    emailAddress VARCHAR(100) NOT NULL,
    password VARCHAR(100) NOT NULL
 );
-INSERT INTO subcontractor(id,name, emailAddress, password) VALUES (1,"Bob's lawn care", "bob@bob.org","bob123");
-
+INSERT INTO subcontractor(id,name, emailAddress, password) VALUES (1,"Alice", "alice@alice.org","alice123");
+INSERT INTO subcontractor(id,name, emailAddress, password) VALUES (2,"Bob", "bob@bob.org","bob123");
+INSERT INTO subcontractor(id,name, emailAddress, password) VALUES (3,"Charlie", "charlie@charlie.org","charlie123");
 #Assignment of subcontractors to projects
 CREATE TABLE assignment(
   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -30,7 +32,9 @@ CREATE TABLE assignment(
   FOREIGN KEY (project_fk) REFERENCES project(id),
   FOREIGN KEY (subcontractor_fk) REFERENCES subcontractor(id)
  );
- INSERT INTO assignment(id, subcontractor_fk, project_fk) VALUES(1, 1,1);
+ INSERT INTO assignment(id, project_fk, subcontractor_fk) VALUES(1, 1,1);
+ INSERT INTO assignment(id, project_fk, subcontractor_fk) VALUES(2, 2,1);
+ INSERT INTO assignment(id, project_fk, subcontractor_fk) VALUES(3, 2,2);
 
 CREATE TABLE report(
   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,

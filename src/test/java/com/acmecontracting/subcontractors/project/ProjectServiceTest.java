@@ -3,30 +3,24 @@ package com.acmecontracting.subcontractors.project;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import junit.framework.TestCase;
-
 
 public class ProjectServiceTest extends TestCase{
 
-	ProjectService projectService;
-	
-	Integer deleteMeId;
+	ProjectService projectService=new ProjectService();	
+	Integer deleteMeId=null;
 
-	public void setUp() {
-		projectService = new ProjectService();
-	}
-	
 	@After    
-    public void after()
+    public void tearDown()
     {
         if (deleteMeId != null) {
             projectService.delete(deleteMeId);//make sure our test cases are marked deleted
         }
     }
 	@Before
-    public void before()
+    public  void setup()
     {
+		projectService = new ProjectService();
         deleteMeId = null;
     }
     
@@ -72,6 +66,7 @@ public class ProjectServiceTest extends TestCase{
 		project.setName("some name");
 		Project project2 = projectService.create(project);
 		
+		
 		boolean result = projectService.delete(project2.getId());
 		assertTrue(result);
 		
@@ -85,10 +80,10 @@ public class ProjectServiceTest extends TestCase{
 		ProjectAnalysisDTO analysis = projectService.analyze();
 		assertNotNull(analysis);
 		assertNotNull(analysis.getAssignments());
-		assertEquals(1, analysis.getAssignments().size());
+		assertEquals(3, analysis.getAssignments().size());
 		assertNotNull(analysis.getProjects());
-		assertEquals(1, analysis.getProjects().size());
+		assertEquals(3, analysis.getProjects().size());
 		assertNotNull(analysis.getSubcontractors());
-		assertEquals(1, analysis.getSubcontractors().size());
+		assertEquals(3, analysis.getSubcontractors().size());
 	}
 }

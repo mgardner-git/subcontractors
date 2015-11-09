@@ -2,9 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="subcontractors">
 	<!-- EclipseLink -->
-		<provider>
-  			org.eclipse.persistence.jpa.PersistenceProvider
-		</provider>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>model.Image</class>
 		<class>com.acmecontracting.subcontractors.project.Project</class>
 		<class>model.Report</class>
@@ -12,11 +10,11 @@
 		<class>model.Assignment</class>
 		<class>com.acmecontracting.subcontractors.shift.Shift</class>
 		<class>com.acmecontracting.subcontractors.converters.LongToDateConverter</class>
-		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/subcontractors"/>
-			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.password" value="1likework"/>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		<properties>		
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
+			<property name="hibernate.connection.password" value="1likework"></property>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/subcontractors"></property>		
+			<property name="hibernate.connection.username" value="root"></property>
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @NamedQueries(
    {@NamedQuery(name="Project.findAll", query="SELECT p FROM Project p"),
-   @NamedQuery(name="Project.myProjects", query="SELECT P FROM Project p,  Assignment A WHERE A.subcontractor.id=:id")}
+   @NamedQuery(name="Project.myProjects", query="SELECT P FROM Project P,  Assignment A WHERE A.subcontractorFk=:id")}
  )
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;

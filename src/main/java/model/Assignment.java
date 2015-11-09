@@ -19,13 +19,11 @@ public class Assignment implements Serializable {
 	private int id;
 
 	@Column(name="project_fk")
-	private int projectFk;
+	private Integer projectFk;
 
-	//bi-directional many-to-one association to Subcontractor
-	@ManyToOne
-	@JoinColumn(name="subcontractor_fk")
-	private Subcontractor subcontractor;
-
+	@Column(name="subcontractor_fk")
+	private Integer subcontractorFk;
+	
 	public Assignment() {
 	}
 
@@ -37,20 +35,21 @@ public class Assignment implements Serializable {
 		this.id = id;
 	}
 
-	public int getProjectFk() {
-		return this.projectFk;
+	public Integer getProjectFk() {
+		return projectFk;
 	}
 
-	public void setProjectFk(int projectFk) {
+	public void setProjectFk(Integer projectFk) {
 		this.projectFk = projectFk;
 	}
 
-	public Subcontractor getSubcontractor() {
-		return this.subcontractor;
+	public Integer getSubcontractorFk() {
+		return subcontractorFk;
 	}
 
-	public void setSubcontractor(Subcontractor subcontractor) {
-		this.subcontractor = subcontractor;
+	public void setSubcontractorFk(Integer subcontractorFk) {
+		this.subcontractorFk = subcontractorFk;
 	}
 
+	
 }

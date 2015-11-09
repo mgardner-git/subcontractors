@@ -30,7 +30,7 @@ public class ShiftServiceTest{
 
 	
 	@After    
-    public void after()
+    public void tearDown()
     {
         if (deleteMeId != null) {
             shiftService.delete(deleteMeId);//make sure our test cases are marked deleted
@@ -40,7 +40,7 @@ public class ShiftServiceTest{
 
     }
 	@Before
-    public void before()
+    public void setup()
     {
 		shiftService = new ShiftService();
 		now = new Date();
