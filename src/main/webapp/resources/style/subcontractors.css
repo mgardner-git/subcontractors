@@ -93,6 +93,12 @@ header
 	cursor: pointer;
 }
 
+.ui-icon-edit{
+	background-image: URL(../img/edit-icon.gif);
+}
+.ui-icon-delete{
+	background-image: URL(../img/delete-icon.gif);
+}
 
 .ui-icon-shift{
 	background-image: URL(../img/clock-icon.gif); 

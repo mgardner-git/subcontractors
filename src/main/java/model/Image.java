@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.acmecontracting.subcontractors.reports.Report;
+
 
 /**
  * The persistent class for the image database table.

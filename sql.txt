@@ -44,6 +44,7 @@ CREATE TABLE report(
   FOREIGN KEY (project_fk) REFERENCES project(id),
   FOREIGN KEY (subcontractor_fk) REFERENCES subcontractor(id)
 );
+INSERT INTO REPORT(id, project_fk, subcontractor_fk, description) VALUES(1,2,2,"report text goes here");
 
 CREATE TABLE shift(
   id INT(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,

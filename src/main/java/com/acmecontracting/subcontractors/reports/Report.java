@@ -1,10 +1,13 @@
-package model;
+package com.acmecontracting.subcontractors.reports;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.project.Project;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import model.Image;
 
 import java.util.List;
 
@@ -14,7 +17,10 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Report.findAll", query="SELECT r FROM Report r")
+@NamedQueries({
+	@NamedQuery(name="Report.findAll", query="SELECT r FROM Report r"),
+	@NamedQuery(name="Report.myReports", query="SELECT R FROM Report R WHERE R.project.id=:projectId AND R.subcontractor.id=:subcontractorId")
+})
 public class Report implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,14 +34,22 @@ public class Report implements Serializable {
 	@OneToMany(mappedBy="report")
 	private List<Image> images;
 
+	@Column(name="project_fk", insertable=false, updatable=false)
+	private Integer project_fk;
+	
+	@Column(name="subcontractor_fk",insertable=false, updatable=false)
+	private Integer subcontractor_fk;
+	
 	//bi-directional many-to-one association to Project
 	@ManyToOne
 	@JoinColumn(name="project_fk")
+	@JsonIgnore
 	private Project project;
 
 	//bi-directional many-to-one association to Subcontractor
 	@ManyToOne
 	@JoinColumn(name="subcontractor_fk")
+	@JsonIgnore
 	private Subcontractor subcontractor;
 
 	public Report() {
@@ -93,6 +107,22 @@ public class Report implements Serializable {
 
 	public void setSubcontractor(Subcontractor subcontractor) {
 		this.subcontractor = subcontractor;
+	}
+
+	public Integer getProject_fk() {
+		return project_fk;
+	}
+
+	public void setProject_fk(Integer project_fk) {
+		this.project_fk = project_fk;
+	}
+
+	public Integer getSubcontractor_fk() {
+		return subcontractor_fk;
+	}
+
+	public void setSubcontractor_fk(Integer subcontractor_fk) {
+		this.subcontractor_fk = subcontractor_fk;
 	}
 
 }

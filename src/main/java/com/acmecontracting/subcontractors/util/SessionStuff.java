@@ -13,7 +13,7 @@ public class SessionStuff {
 	public static final String LOGIN_ERROR = "LOGIN_ERROR";
 	public static final String USER = "USER";
 	
-	public static Subcontractor getLoggedInUser() {
+	public static Subcontractor getLoggedInUser() {	
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = attr.getRequest();
 		HttpSession session =  request.getSession(true); // true == allow create

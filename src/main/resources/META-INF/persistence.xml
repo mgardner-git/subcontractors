@@ -5,7 +5,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>model.Image</class>
 		<class>com.acmecontracting.subcontractors.project.Project</class>
-		<class>model.Report</class>
+		<class>com.acmecontracting.subcontractors.reports.Report</class>
 		<class>com.acmecontracting.subcontractors.Subcontractor</class>
 		<class>model.Assignment</class>
 		<class>com.acmecontracting.subcontractors.shift.Shift</class>
