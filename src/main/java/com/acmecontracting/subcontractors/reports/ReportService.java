@@ -6,23 +6,32 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acmecontracting.subcontractors.Subcontractor;
-
-import model.Assignment;
+import com.acmecontracting.subcontractors.SubcontractorService;
+import com.acmecontracting.subcontractors.project.Project;
+import com.acmecontracting.subcontractors.project.ProjectService;
 
 @Service
 public class ReportService {
 	//TODO: Validation??
 	
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("subcontractors");
+	@Autowired
+	ProjectService projectService;
+	@Autowired
+	SubcontractorService subcontractorService;
 	
-	public Report create(Report report) {
+	public Report create(Report report) {		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
+		Project p = projectService.read(report.getProject_fk());
+		report.setProject(p);
+		Subcontractor s = subcontractorService.read(report.getSubcontractor_fk());
+		report.setSubcontractor(s);
 		em.persist(report);
 		em.flush();
 		em.getTransaction().commit();		
@@ -54,6 +63,11 @@ public class ReportService {
 		}else {
 			
 			em.getTransaction().begin();
+			Project p = projectService.read(report.getProject_fk());
+			report.setProject(p);
+			Subcontractor s = subcontractorService.read(report.getSubcontractor_fk());
+			report.setSubcontractor(s);
+
 			base.setDescription(report.getDescription());
 			base.setProject(report.getProject());
 			em.persist(base);

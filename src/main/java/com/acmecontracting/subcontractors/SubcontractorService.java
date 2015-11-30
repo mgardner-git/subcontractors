@@ -43,6 +43,12 @@ public class SubcontractorService {
 		em.getTransaction().commit();		
 		return subcontractor;
 	}
+	
+	public Subcontractor read(Integer id) {	
+		EntityManager em = emf.createEntityManager();		
+		Subcontractor subcontractor = em.find(Subcontractor.class, id);		
+		return subcontractor;
+	}
 
 	
 	public boolean delete(Integer id) {

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +32,9 @@ public class ReportController {
 	@Autowired
 	ReportService service;
 
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Report create(@RequestBody Report report) {
-		logger.info("Creating Report on Project: " + report.getProject().getName());
+		report.setSubcontractor_fk(SessionStuff.getLoggedInUser().getId());
 		Report result = service.create(report);
 		return result;
 	}
@@ -54,7 +55,7 @@ public class ReportController {
 	}
 	
 
-	@RequestMapping(value="{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="{id}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Report update(@RequestBody Report report) {
 		logger.info("Updating report: " + report.getId());
 		Report result = service.update(report);

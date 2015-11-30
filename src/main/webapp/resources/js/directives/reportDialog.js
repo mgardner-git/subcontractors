@@ -4,6 +4,8 @@ app.directive("reportDialog",function(){
 		templateUrl: "resources/dialogs/report.html",
 		scope:{
 			report: "=",
+			project: "=",
+			updateFunc: "&"
 		},
 		controller: function($scope,$http){			
 
@@ -12,18 +14,43 @@ app.directive("reportDialog",function(){
 			$scope.$watch("report", function(){
 				jQuery("#reportDialog").dialog({
 					autoOpen: false,
-					title: "Ingredient",
+					title: "Report",
 					modal: true,
 					buttons:[
 						{
 							text: ($scope.report && $scope.report.id) ? "Edit " + $scope.report.id : "Create Report",
 							icons: {primary: "ui-icon-plusthick"},
 							click: function() {
-								var submitText = angular.toJson($scope.report);					
-								jQuery.post("",submitText,function(data, status, headers, config) {
-									
-									jQuery("#reportDialog").dialog("close");
-								});
+								$scope.report.project_fk = $scope.project.id;
+								
+								var submitText = angular.toJson($scope.report);
+								var callback = function(){
+									jQuery("#reportDialog").dialog("close");									
+									$scope.updateFunc();
+								}
+								var url = "rest/report";
+								
+								if ($scope.report.id){
+									jQuery.ajax ({
+									    url: url + "/" + $scope.report.id,
+									    type: "PUT",
+									    data: submitText,
+									    dataType: "json",
+									    contentType: "application/json; charset=utf-8",
+									    success: callback
+									    }
+									);
+								}else{
+									jQuery.ajax ({
+									    url: url,
+									    type: "POST",
+									    data: submitText,
+									    dataType: "json",
+									    contentType: "application/json; charset=utf-8",
+									    success: callback
+									    }
+									);
+								}
 							}
 						}
 					]

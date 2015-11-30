@@ -86,13 +86,17 @@ header
 	background-repeat: no-repeat;
 	background-image: URL(../img/search-icon.gif);	
 }
+.ui-icon{
+	width: 18px;
+	height: 18px;	
+}
+
 .ui-icon-large{
 	width: 50px;
 	height: 50px;
 	display:inline-block;
 	cursor: pointer;
 }
-
 .ui-icon-edit{
 	background-image: URL(../img/edit-icon.gif);
 }
@@ -105,6 +109,9 @@ header
 }
 .ui-icon-report{
 	background-image: URL(../img/report-icon.gif);
+}
+.ui-icon-create{
+	background-image: URL(../img/create-icon.gif);
 }
 .selected{
 	background-color: yellow;

@@ -9,7 +9,6 @@
 <script type="text/javascript" src="/subcontractors/resources/js/jquery-1.11.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/subcontractors/resources/js/jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
 <link rel="stylesheet" type="text/css" href="/subcontractors/resources/style/subcontractors.css"/>
-<link rel="stylesheet" type="text/css" href="/subcontractors/resources/style/discussion.css"/>
 <link rel="stylesheet" type="text/css" href="/subcontractors/resources/js/ngTooltips-master/css/ng-tooltips.css"/>
 <link rel="stylesheet" type="text/css" href="/subcontractors/resources/js/jquery-ui-timepicker-addon.css"/>
 <script type="text/javascript" src="/subcontractors/resources/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
