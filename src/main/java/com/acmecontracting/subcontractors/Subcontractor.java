@@ -13,6 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="subcontractor")
 @NamedQueries({
 	@NamedQuery(name="Subcontractor.findAll", query="SELECT S FROM Subcontractor S"),
 	@NamedQuery(name="Subcontractor.login", query="SELECT S FROM Subcontractor S WHERE S.emailAddress=:emailAddress AND S.password=:password")		

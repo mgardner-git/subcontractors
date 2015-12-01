@@ -17,6 +17,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="report")
 @NamedQueries({
 	@NamedQuery(name="Report.findAll", query="SELECT r FROM Report r"),
 	@NamedQuery(name="Report.myReports", query="SELECT R FROM Report R WHERE R.project.id=:projectId AND R.subcontractor.id=:subcontractorId")

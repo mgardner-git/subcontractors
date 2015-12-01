@@ -12,6 +12,7 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import com.acmecontracting.subcontractors.converters.LongToDateConverter;
 
@@ -21,6 +22,7 @@ import com.acmecontracting.subcontractors.converters.LongToDateConverter;
  * 
  */
 @Entity
+@Table(name="shift")
 @NamedQueries({
 	@NamedQuery(name="Shift.findAll", query="SELECT s FROM Shift s"),
 	@NamedQuery(name="Shift.readByShiftAndSubcontractor", query="SELECT S FROM Shift S WHERE S.subcontractorId=:subcontractorId AND S.projectId=:projectId")

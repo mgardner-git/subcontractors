@@ -1,0 +1,36 @@
+URLs
+https://cloud.digitalocean.com/droplets/new
+https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh
+
+Set up Tomcat user
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_source=Customerio&utm_medium=Email_Internal&utm_campaign=Email_UbuntuDistroApacheWelcome
+adduser tomcat
+#answer questions
+gpasswd -a tomcat sudo
+
+Set up Tomcat
+https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-7-on-ubuntu-14-04-via-apt-get?utm_source=Customerio&utm_medium=Email_Internal&utm_campaign=Email_UbuntuDistroApacheWelcome
+
+sudo apt-get update
+sudo apt-get install tomcat7
+sudo nano /etc/default/tomcat7
+JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
+
+check http://159.203.255.18:8080/ in a browser
+sudo apt-get install tomcat7-admin
+sudo apt-get install default-jdk
+sudo nano /etc/tomcat7/tomcat-users.xml
+Configure the <tomcat-users> section to add the following user
+<tomcat-users>
+    <user username="admin" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+
+Set up MySQL
+https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial
+sudo apt-get install mysql-server
+sudo mysql_install_db
+sudo /usr/bin/mysql_secure_installation
+--make sure you update the passwords file with the root password
+
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-remote-database-to-optimize-site-performance-with-mysql

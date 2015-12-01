@@ -11,6 +11,7 @@ import com.acmecontracting.subcontractors.Subcontractor;
  * 
  */
 @Entity
+@Table(name="assignment")
 @NamedQuery(name="Assignment.findAll", query="SELECT a FROM Assignment a")
 public class Assignment implements Serializable {
 	private static final long serialVersionUID = 1L;
