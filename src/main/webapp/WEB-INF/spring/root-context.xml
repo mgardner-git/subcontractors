@@ -5,5 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean name="expiredPasswordFilterBean" class="com.acmecontracting.subcontractors.filters.ExpiredPasswordFilter"/>
-		
+	<bean id="reportService" class="com.acmecontracting.subcontractors.reports.ReportService"/>
+	<bean id="projectService" class="com.acmecontracting.subcontractors.project.ProjectService"/>
+	<bean id="subcontractorService" class="com.acmecontracting.subcontractors.SubcontractorService" />		
 </beans>

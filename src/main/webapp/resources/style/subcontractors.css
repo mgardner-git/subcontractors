@@ -22,11 +22,10 @@ body,html {
 	background:#9c9;
 }
 #content {
-	background:#c9c;
+	background-color:white;
 	float:right;
 	width:890px;
 	padding:10px;
-	background:#99c;
 }
 
 #topNav{

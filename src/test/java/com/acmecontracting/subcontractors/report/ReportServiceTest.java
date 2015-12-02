@@ -3,17 +3,25 @@ package com.acmecontracting.subcontractors.report;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.project.Project;
 import com.acmecontracting.subcontractors.reports.Report;
 import com.acmecontracting.subcontractors.reports.ReportService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import junit.framework.TestCase;
 
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration(locations={"classpath:root-context.xml"})
 public class ReportServiceTest extends TestCase{
 
-	ReportService reportService=new ReportService();	
+	@Autowired
+	ReportService reportService;	
 	Integer deleteMeId=null;
 
 	@After    
@@ -25,8 +33,7 @@ public class ReportServiceTest extends TestCase{
     }
 	@Before
     public  void setup()
-    {
-		reportService = new ReportService();
+    {		
         deleteMeId = null;
     }
     
@@ -36,10 +43,11 @@ public class ReportServiceTest extends TestCase{
 		report.setDescription("Test1");
 		Project project = new Project();
 		project.setId(1);
-		report.setProject(project);
+		report.setProject(project);		
 		Subcontractor subcontractor = new Subcontractor();
 		subcontractor.setId(1);
 		report.setSubcontractor(subcontractor);
+		
 		
 		Report result = reportService.create(report);
 		assertNotNull(result);

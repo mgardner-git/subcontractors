@@ -26,6 +26,7 @@ public class Report implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	@Lob
@@ -100,6 +101,11 @@ public class Report implements Serializable {
 
 	public void setProject(Project project) {
 		this.project = project;
+		if (project == null){
+			project_fk=null;
+		}else{
+			project_fk=project.getId();
+		}
 	}
 
 	public Subcontractor getSubcontractor() {
@@ -108,6 +114,11 @@ public class Report implements Serializable {
 
 	public void setSubcontractor(Subcontractor subcontractor) {
 		this.subcontractor = subcontractor;
+		if (subcontractor == null){
+			subcontractor_fk=null;
+		}else{
+			subcontractor_fk=subcontractor.getId();
+		}
 	}
 
 	public Integer getProject_fk() {

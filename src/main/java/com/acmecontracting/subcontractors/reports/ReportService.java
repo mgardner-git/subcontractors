@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +32,14 @@ public class ReportService {
 		Project p = projectService.read(report.getProject_fk());
 		report.setProject(p);
 		Subcontractor s = subcontractorService.read(report.getSubcontractor_fk());
-		report.setSubcontractor(s);
+		report.setSubcontractor(s);		
 		em.persist(report);
+		Report result = em.merge(report);
 		em.flush();
-		em.getTransaction().commit();		
-		return report;
+		em.getTransaction().commit();	
+		Integer id = result.getId();
+		em.close();
+		return result;
 	}
 
 	public Report read(Integer id) {	

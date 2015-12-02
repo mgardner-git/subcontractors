@@ -26,7 +26,9 @@
 		}
 		$scope.confirmDeleteReport =function(report){
 			$scope.selectedReport = report;
-			jQuery("confirmDeleteReport").dialog("open");
+			$timeout(function(){
+				jQuery("#confirmDeleteReportDialog").dialog("open");
+			});
 		}
 		$scope.getReports();
 		$scope.getProject();
