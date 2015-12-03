@@ -11,17 +11,25 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.acmecontracting.subcontractors.Subcontractor;
 import com.acmecontracting.subcontractors.SubcontractorService;
 import com.acmecontracting.subcontractors.project.Project;
 import com.acmecontracting.subcontractors.project.ProjectService;
 
-
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration(locations={"classpath:root-context.xml"})
 public class ShiftServiceTest{
 
+	@Autowired
 	ShiftService shiftService;
+	@Autowired
 	ProjectService projectService;
+	@Autowired
 	SubcontractorService subcontractorService;	
 	Project project;
 	Subcontractor subcontractor;

@@ -8,4 +8,5 @@
 	<bean id="reportService" class="com.acmecontracting.subcontractors.reports.ReportService"/>
 	<bean id="projectService" class="com.acmecontracting.subcontractors.project.ProjectService"/>
 	<bean id="subcontractorService" class="com.acmecontracting.subcontractors.SubcontractorService" />		
+	<bean id="shiftService" class="com.acmecontracting.subcontractors.shift.ShiftService" />
 </beans>

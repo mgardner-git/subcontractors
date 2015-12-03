@@ -3,11 +3,18 @@ package com.acmecontracting.subcontractors.project;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import junit.framework.TestCase;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import junit.framework.TestCase;
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration(locations={"classpath:root-context.xml"})
 public class ProjectServiceTest extends TestCase{
 
-	ProjectService projectService=new ProjectService();	
+	@Autowired
+	ProjectService projectService;	
 	Integer deleteMeId=null;
 
 	@After    
